@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPM 共情修复轨迹可视化 · 交互式3D动画</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(180deg, #f3f6fb 0%, #f8f9fc 100%);
+            color: #1f2937;
+        }
+        
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px 32px 32px;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card {
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 28px 70px rgba(15, 40, 80, 0.08);
+            padding: 24px 36px 26px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .title-group h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+            color: #0f172a;
+            letter-spacing: 0.01em;
+        }
+        
+        .title-group p {
+            margin: 4px 0 0;
+            font-size: 15px;
+            color: #475569;
+        }
+        
+        .badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+        
+        .badge-primary {
+            background: #e0ecff;
+            color: #1d4ed8;
+        }
+        
+        .badge-danger {
+            background: #fde2e2;
+            color: #b91c1c;
+        }
+        
+        .model-selector {
+            margin: 10px 0;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(139, 92, 246, 0.02) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .model-selector label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4c1d95;
+        }
+        
+        .model-selector select {
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            background: white;
+            font-size: 13px;
+            color: #1f2937;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .model-selector select:hover {
+            border-color: #8b5cf6;
+        }
+        
+        .model-selector select:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+        
+        .instructions {
+            margin-top: 6px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.04) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.18);
+            color: #1e3a8a;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .instructions strong {
+            display: inline-block;
+            min-width: 92px;
+            color: #1d4ed8;
+        }
+        
+        .instructions ul {
+            margin: 8px 0 0;
+            padding-left: 16px;
+        }
+        
+        .instructions li {
+            margin: 4px 0;
+        }
+        
+        #plotly-container {
+            width: 100%;
+            height: 620px;
+            border-radius: 18px;
+            box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.04);
+            margin-top: 10px;
+            flex: 1;
+        }
+        
+        .footer {
+            margin-top: 14px;
+            text-align: right;
+            font-size: 12px;
+            color: #617086;
+        }
+        
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            font-size: 16px;
+            color: #6b7280;
+        }
+        
+        @media (max-width: 1440px) {
+            .container { padding: 22px 24px 28px; }
+            .card { padding: 26px 28px 28px; }
+        }
+        
+        @media (max-width: 960px) {
+            .container { padding: 18px 16px 24px; }
+            .card { padding: 24px; }
+            #plotly-container { height: 600px; margin-top: 16px; }
+            .title-group h1 { font-size: 24px; }
+            .title-group p { font-size: 13px; }
+        }
+        
+        @media (max-width: 720px) {
+            .header { flex-direction: column; align-items: flex-start; }
+            .badges { gap: 6px; }
+            #plotly-container { height: 540px; margin-top: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <header class="header">
+                <div class="title-group">
+                    <h1>EPM 共情修复轨迹 · 时间动画</h1>
+                    <p>点击"播放"观看轨迹从起点生长，使用图例切换成功/失败路径。</p>
+                </div>
+                <div class="badges">
+                    <span class="badge badge-primary" id="case-count">加载中...</span>
+                    <span class="badge badge-danger">蓝色成功 · 红色失败</span>
+                </div>
+            </header>
+            
+            <div class="model-selector">
+                <label for="model-select">📊 选择模型:</label>
+                <select id="model-select">
+                    <option value="default_20251106_233640">Default Model (2025-11-06)</option>
+                    <!-- 未来可添加更多模型 -->
+                </select>
+            </div>
+            
+            <div class="instructions">
+                <strong>交互提示：</strong>
+                <ul>
+                    <li>鼠标拖动：绕三轴旋转；按住 Shift + 拖动：平移视角</li>
+                    <li>滚轮缩放：拉近/拉远；双击恢复初始视角</li>
+                    <li>图例点击：显示/隐藏某类轨迹或终点标记</li>
+                    <li>悬停轨迹：查看该点所在轮次与三轴坐标</li>
+                </ul>
+            </div>
+            
+            <div id="plotly-container">
+                <div class="loading">🔄 正在加载数据...</div>
+            </div>
+            
+            <p class="footer">Tips：图例可点击隐藏类别 · 鼠标拖动旋转视角 · Shift + 滚轮进行平移</p>
+        </div>
+    </div>
+
+    <script src="js/visualization.js"></script>
+</body>
+</html>
+
