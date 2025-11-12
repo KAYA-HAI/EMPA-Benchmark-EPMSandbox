@@ -1,0 +1,22 @@
+{
+  "run_timestamp": "20251106_122908",
+  "test_mode": true,
+  "test_limit": 1,
+  "custom_model_config": {
+    "base_url": "http://115.190.74.46:57037/v1",
+    "model_name": "default"
+  },
+  "evaluation_config": {
+    "max_turns": 45,
+    "K": 1,
+    "max_workers": 3,
+    "actor_model": "google/gemini-2.5-pro",
+    "director_model": "google/gemini-2.5-pro",
+    "judger_model": "google/gemini-2.5-pro"
+  },
+  "total_cases": 1,
+  "success_count": 0,
+  "error_count": 1,
+  "success_rate": 0.0,
+  "results": []
+}
