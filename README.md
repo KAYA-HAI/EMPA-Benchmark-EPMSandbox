@@ -941,7 +941,7 @@ A: Costs vary by model. With Gemini 2.5 Pro as infrastructure and chatGPT-4o as 
 </details>
 <details>
 <summary><strong>Q: Can I use EMPA for reinforcement learning or agent optimization?</strong></summary>
-A: Yes. EMPA's evaluation interface outputs structured, per-turn process signals — $\Delta E_t$, $\cos\theta_t$, state vectors $\mathbf{P}_t$ — that can serve as reward or supervision signals for downstream optimization, including reinforcement learning (RL), reward modeling, preference learning, and policy optimization. See the [paper](https://arxiv.org/abs/2603.00552) Section 3.4 for the RL-friendly interface design.
+A: Yes. EMPA's evaluation interface outputs structured, per-turn process signals — ΔE<sub>t</sub>, cos θ<sub>t</sub>, state vectors <b>P</b><sub>t</sub> — that can serve as reward or supervision signals for downstream optimization, including reinforcement learning (RL), reward modeling, preference learning, and policy optimization. See the <a href="https://arxiv.org/abs/2603.00552">paper</a> Section 3.4 for the RL-friendly interface design.
 </details>
 <details>
 <summary><strong>Q: Can I add my own scenarios?</strong></summary>
@@ -953,7 +953,7 @@ A: EMPA's evaluation methodology — IEDR initial assessment, MDEP-PR progress r
 </details>
 <details>
 <summary><strong>Q: Why is EPM-Q scenario-normalized?</strong></summary>
-A: Different scenarios have different initial deficit magnitudes $\lVert \mathbf{P}_0 \rVert$. Without normalization, models would score higher on easier scenarios. Dividing by $r_0$ ensures fair comparison across difficulty levels.
+A: Different scenarios have different initial deficit magnitudes ‖<b>P</b><sub>0</sub>‖. Without normalization, models would score higher on easier scenarios. Dividing by r<sub>0</sub> ensures fair comparison across difficulty levels.
 </details>
 <details>
 <summary><strong>Q: What infrastructure model should I use?</strong></summary>
