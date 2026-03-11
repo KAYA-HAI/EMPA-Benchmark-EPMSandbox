@@ -1043,5 +1043,5 @@ A：我们推荐 Gemini 2.5 Pro 用于用户智能体、裁判智能体和导演
 ## 🍉 联系方式
 
 - **论文**：[arXiv:2603.00552](https://arxiv.org/abs/2603.00552)
-- **邮箱**：zhangshiya@natureselect.ai · zhangshiya1999@gmail.com
+- **邮箱**：zhangshiya1999@gmail.com · zhangshiya@natureselect.ai
 - **团队**：[Team Echo](https://www.natureselect.ai)，Nature Select
