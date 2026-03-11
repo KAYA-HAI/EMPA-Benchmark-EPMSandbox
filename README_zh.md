@@ -121,12 +121,12 @@ EMPA 由四个集成组件构成：
     <tr>
       <td align="center"><strong>2</strong></td>
       <td><strong>多智能体沙盒</strong></td>
-      <td>四角色架构——<strong>用户智能体</strong>（人格 + 记忆库）、<strong>导演智能体</strong>（中央控制器，观察→决策→执行）、<strong>裁判智能体</strong>（基于量规的证据裁决者）和<strong>被测模型</strong>。交互非脚本化、完全开放。</td>
+      <td>四角色架构——<strong>用户智能体</strong>（人格 + 记忆库）、<strong>导演智能体</strong>（中央控制器，观察→决策→执行）、<strong>裁判智能体</strong>（基于rubics的证据裁决者）和<strong>被测模型</strong>。交互非脚本化、完全开放。</td>
     </tr>
     <tr>
       <td align="center"><strong>3</strong></td>
       <td><strong>EPM 编排器</strong></td>
-      <td>在潜在心理状态空间 <b>P</b><sub>t</sub> ∈ ℝ³（认知 × 情感 × 前摄）中运行。计算向量化共情做功 ΔE<sub>t</sub> = ‖<b>v</b><sub>t</sub>‖ · cos θ<sub>t</sub>，并执行能量门控三元成功判定（解决、陪伴、能量门）。</td>
+      <td>在潜在心理状态空间 <b>P</b><sub>t</sub> ∈ ℝ³（认知 × 情感 × 动机）中运行。计算向量化共情做功 ΔE<sub>t</sub> = ‖<b>v</b><sub>t</sub>‖ · cos θ<sub>t</sub>，并执行能量门控三元成功判定。</td>
     </tr>
     <tr>
       <td align="center"><strong>4</strong></td>
