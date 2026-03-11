@@ -1,32 +1,112 @@
-# Python
+# ============================================================
+# EMPA Benchmark .gitignore
+# ============================================================
+
+# --- Python ---
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-env/
-venv/
 *.egg-info/
 dist/
 build/
+*.egg
 
-# IDE
+# --- Environments ---
+env/
+venv/
+.venv/
+
+# --- IDE / Editor ---
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+.cursor/
 
-# OS
+# --- OS ---
 .DS_Store
 Thumbs.db
 
-# 测试文件
-test_*.html
+# --- Cache ---
+.mpl/
+
+# --- Temp ---
 /tmp/
+test_*.html
 
-# 结果文件（太大，不适合Git）
-results/benchmark_runs/*/script_*_result.json
+# ============================================================
+# Raw data (already bundled in empa/data/)
+# ============================================================
+1000data/
 
-# 只保留可视化需要的数据
-!visualization/data/*.json
+# ============================================================
+# Paper & large binary assets (all PDFs excluded)
+# ============================================================
+*.pdf
+
+# ============================================================
+# Legacy internal code (not part of the open-source package)
+# ============================================================
+/Benchmark/
+/config/
+/docs/
+/docs_old/
+/evaluation/
+/experiments/
+/logs/
+/runner/
+/scripts/
+/tests/
+/theory/
+run_benchmark_*.py
+run_benchmark_*.sh
+run_real_conversation.py
+benchmark_run*.log
+sample.md
+sampled_30_full.txt
+test_single_case.txt
+DEPLOY_INSTRUCTIONS.md
+PROJECT_NAVIGATION.md
+PUSH_GUIDE.md
+QUICK_START.md
+
+# ============================================================
+# Generated output (reproducible via CLI)
+# ============================================================
+empa_demo/
+
+# ============================================================
+# Benchmark results — keep lightweight analysis, skip heavy data
+# ============================================================
+
+# Old / dev run results
+results/Trajectory/
+results/benchmark_distribution_visualization.png
+results/benchmark_runs/default_*/
+results/benchmark_runs/judger_test_results/
+results/benchmark_runs/gpt-4o_*/
+results/iedr_analysis/
+results/iedr_batch_results.json
+results/sampled_benchmark_*
+results/scenario_analysis/
+
+# Per-model: exclude heavy files, keep descriptive_statistics.* and script_*_result.json
+results/benchmark_runs/epm-bench/*/progress.json
+results/benchmark_runs/epm-bench/*/summary.json
+results/benchmark_runs/epm-bench/*/*.log
+results/benchmark_runs/epm-bench/*/3d_trajectories_basic/
+results/benchmark_runs/epm-bench/*/3d_trajectories_plotly/
+results/benchmark_runs/epm-bench/*/3d_trajectories_professional/
+results/benchmark_runs/epm-bench/*/3d_visualizations*/
+results/benchmark_runs/epm-bench/*/3d_clustered_*/
+
+# Redundant analysis figure dirs
+results/benchmark_runs/epm-bench/analysis_figures/00_dataset_stats/
+
+# Paper drafts (not part of the benchmark)
+results/benchmark_runs/epm-bench/essay_guide.md
+results/benchmark_runs/epm-bench/report_models_list.txt
+results/benchmark_runs/epm-bench/results_section*

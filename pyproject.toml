@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "empa"
+version = "0.1.0"
+description = "EMPA: Evaluating Persona-Aligned Empathy as a Process"
+readme = "README.md"
+license = {text = "CC-BY-NC-4.0"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Shiya Zhang"},
+    {name = "Yuhan Zhan"},
+    {name = "Ruixi Su"},
+    {name = "Ruihan Sun"},
+    {name = "Ziyi Song"},
+    {name = "Zhaohan Chen"},
+    {name = "Xiaofan Zhang"},
+]
+keywords = ["benchmark", "empathy", "dialogue", "evaluation", "nlp", "llm", "agent"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "openai>=1.0.0",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.25.0",
+]
+
+[project.optional-dependencies]
+volcengine = ["volcenginesdkarkruntime"]
+visualization = [
+    "matplotlib>=3.7.0",
+    "scipy>=1.10.0",
+    "numpy>=1.24.0",
+]
+evaluation = [
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "openpyxl>=3.1.0",
+]
+all = ["empa[volcengine,visualization,evaluation]"]
+dev = [
+    "empa[all]",
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/empa/empa"
+Documentation = "https://github.com/empa/empa/tree/main/docs"
+Repository = "https://github.com/empa/empa"
+Issues = "https://github.com/empa/empa/issues"
+
+[project.scripts]
+empa = "empa.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["empa*"]
+
+[tool.setuptools.package-data]
+"empa.data" = ["*.txt", "*.json"]
+"empa.data.cases" = ["*.md"]
+"empa.data.scenarios" = ["*.json"]
+"empa.data.precomputed" = ["*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
