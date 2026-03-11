@@ -1001,6 +1001,6 @@ If you use EMPA in your research, please cite:
 ## 🍉 Contact
 
 - **Paper**: [arXiv:2603.00552](https://arxiv.org/abs/2603.00552)
-- **Email**: zhangshiya@natureselect.ai · zhangshiya1999@gmail.com
+- **Email**: zhangshiya1999@gmail.com · zhangshiya@natureselect.ai
 - **Team**: [Team Echo](https://www.natureselect.ai), Nature Select
 
